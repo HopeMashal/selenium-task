@@ -1,5 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Selenium Task">
+  <parameter name="CSVFilesPath" value="./src/files/" />
+  <parameter name="InputFile" value="input.csv" />
+  <parameter name="OutputFile" value="output.csv" />
+  <parameter name="ImagesPath" value="./Screenshots/" />
   <test name="Selenium Task - Chrome">
     <classes>
       <class name="seleniumtask.SeleniumTask" />
