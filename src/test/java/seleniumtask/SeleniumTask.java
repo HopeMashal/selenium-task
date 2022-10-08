@@ -47,6 +47,8 @@ public class SeleniumTask extends TaskBase {
     Allure.step("Click Search Button");
     bookingPage.ClickSearchBtn();
 
+    Thread.sleep(6000);
+
     Allure.step("After Click Search Button - Take Screen Shot");
     File afterClickSearchBtn = takeScreenShot
         .takeScreenShot(ImagesPath + "SearchBtnClicked/SearchBtnClickedForHotelsIn" + City + ".jpg");
