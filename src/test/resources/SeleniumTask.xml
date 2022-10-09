@@ -4,7 +4,7 @@
   <parameter name="InputFile" value="input.csv" />
   <parameter name="OutputFile" value="output.csv" />
   <parameter name="ImagesPath" value="./Screenshots/" />
-  <test name="Booking.com - Chrome">
+  <test name="Booking.com - FireFox">
     <classes>
       <class name="seleniumtask.SeleniumTask" />
     </classes>

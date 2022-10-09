@@ -1,10 +1,14 @@
 package seleniumtask.Pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BookingPage {
   WebDriver Driver;
@@ -25,6 +29,8 @@ public class BookingPage {
     JavaScript.executeScript("arguments[0].click();", CityBox);
     JavaScript.executeScript("arguments[0].value=`${arguments[1]}`;", CityBox, City);
     CityBox.sendKeys(Keys.SPACE);
+    WebDriverWait wait = new WebDriverWait(Driver, Duration.ofSeconds(100));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sb-autocomplete__item-with_photo")));
     Thread.sleep(3000);
     JavaScript.executeScript("document.getElementsByClassName('c-autocomplete__item')[0].click();");
     Thread.sleep(3000);

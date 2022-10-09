@@ -1,11 +1,15 @@
 package seleniumtask;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -53,18 +57,10 @@ public class SeleniumTask extends TaskBase {
     Allure.step("Click Search Button");
     bookingPage.ClickSearchBtn();
 
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[data-testid='property-card']")));
     Thread.sleep(6000);
 
-    // Allure.step("After Click Search Button - Take Screen Shot");
-    // File afterClickSearchBtn = takeScreenShot
-    // .takeScreenShot(ImagesPath + "SearchBtnClicked/SearchBtnClickedForHotelsIn" +
-    // City + ".jpg");
-    // Allure.addAttachment(
-    // afterClickSearchBtn.getName(),
-    // FileUtils.openInputStream(afterClickSearchBtn));
-
-    // Allure.step("Open First Result & Get Details (URL & Name & Review)");
-    SearchPage searchPage = new SearchPage(driver);
     Allure.step("After Click Search Button - Take Screen Shot");
     File afterClickSearchBtn = takeScreenShot
         .takeScreenShot(ImagesPath + "SearchBtnClicked/SearchBtnClickedForHotelsIn" + City + ".jpg");
@@ -73,6 +69,7 @@ public class SeleniumTask extends TaskBase {
         FileUtils.openInputStream(afterClickSearchBtn));
 
     Allure.step("Open First Result & Get Details (URL & Name & Review)");
+    SearchPage searchPage = new SearchPage(driver);
     String HotelURL = searchPage.GetFirstResultLink();
     String HotelName = searchPage.GetFirstResultName();
     String HotelReview = searchPage.GetFirstResultReview();
@@ -81,10 +78,11 @@ public class SeleniumTask extends TaskBase {
     System.out.println(HotelReview);
     System.out.println(HotelURL);
     searchPage.ClickFirstResult();
-    Thread.sleep(3000);
+    Thread.sleep(10000);
     ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
     driver.switchTo().window(tabs2.get(1));
 
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.className("pp-header__title")));
     Thread.sleep(6000);
 
     JavascriptExecutor JavaScript = (JavascriptExecutor) driver;

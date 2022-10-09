@@ -28,8 +28,8 @@ public class TaskBase {
     TaskBase.InputFile = InputFile;
     TaskBase.OutputFile = OutputFile;
     TaskBase.ImagesPath = ImagesPath;
-    Allure.step("Open Headless Chrome Browser");
-    driver = OpenBrowser.openChromeWithOptions();
+    Allure.step("Open Headless FireFox Browser");
+    driver = OpenBrowser.openFireFoxWithOptions();
     takeScreenShot = new TakeScreenShot(driver);
     driver.manage().window().setSize(new Dimension(1200, 800));
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
@@ -37,7 +37,7 @@ public class TaskBase {
 
   @AfterSuite
   public void afterSuite() {
-    Allure.step("Close Chrome Browser");
+    Allure.step("Close FireFox Browser");
     driver.quit();
   }
 
