@@ -1,7 +1,5 @@
 package seleniumtask.Pages;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -12,16 +10,14 @@ public class BookingPage {
   WebDriver Driver;
   JavascriptExecutor JavaScript;
   WebElement CityBox;
-  List<WebElement> CheckInOutBoxes;
-  WebElement CheckBox;
+  WebElement CheckInOutBox;
   WebElement SearchBtn;
 
   public BookingPage(WebDriver driver) {
     Driver = driver;
     JavaScript = (JavascriptExecutor) Driver;
     CityBox = Driver.findElement(By.id("ss"));
-    CheckInOutBoxes = Driver.findElements(By.className("sb-date-field__field"));
-    CheckBox = CheckInOutBoxes.get(0);
+    CheckInOutBox = Driver.findElement(By.className("sb-date-field__field"));
     SearchBtn = Driver.findElement(By.className("sb-searchbox__button"));
   }
 
@@ -32,7 +28,7 @@ public class BookingPage {
     Thread.sleep(3000);
     JavaScript.executeScript("document.getElementsByClassName('c-autocomplete__item')[0].click();");
     Thread.sleep(3000);
-    JavaScript.executeScript("arguments[0].click();", CheckBox);
+    JavaScript.executeScript("arguments[0].click();", CheckInOutBox);
     JavaScript.executeScript("document.querySelector('[data-date=\"" + CheckIn + "\"]').click();");
     JavaScript.executeScript("document.querySelector('[data-date=\"" + CheckOut + "\"]').click();");
   }
